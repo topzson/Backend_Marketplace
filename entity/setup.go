@@ -26,8 +26,18 @@ func SetupDatabase() {
 
 	// Migrate the schema
 
-	database.AutoMigrate(&User{})
+	database.AutoMigrate(&Role{}, &User{})
 
 	db = database
+
+	role1 := Role{
+		Name: "Admin",
+	}
+	db.Model(&Role{}).Create(&role1)
+
+	role2 := Role{
+		Name: "Customer",
+	}
+	db.Model(&Role{}).Create(&role2)
 
 }
